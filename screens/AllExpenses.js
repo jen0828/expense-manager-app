@@ -5,4 +5,4 @@ function AllExpenses() {
   <Text>All Expenses</Text>;
 }
 
-export default RecentExpenses;
+export default AllExpenses;

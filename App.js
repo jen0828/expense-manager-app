@@ -1,18 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ManageExpense from './screens/ManageExpense';
+import RecentExpenses from './screens/RecentExpenses';
+import AllExpenses from './screens/AllExpenses';
 
-export default function App() {
+const Stack = createStackNavigator();
+const BottomTabs = createBottomTabNavigator();
+
+function ExpensesOverView() {
   return (
-    <View style={styles.container}>
-      <Text>Hello World</Text>
-    </View>
+    <BottomTabs.Navigator>
+      <BottomTabs.Screen name="RecentExpenses" component={RecentExpenses} />
+      <BottomTabs.Screen name="AllExpenses" component={AllExpenses} />
+    </BottomTabs.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="ExpensesOverview" component={ExpensesOverView} />
+          <Stack.Screen name="ManageExpense" component={ManageExpense} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
+  );
+}
